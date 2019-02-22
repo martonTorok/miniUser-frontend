@@ -1,3 +1,23 @@
-<p>
-  register works!
-</p>
+<h1>Register</h1>
+<hr />
+<div class="form-container">
+  <form
+    [formGroup]="registerForm"
+    class="register-form full-width"
+    (ngSubmit)="onSubmit()"
+  >
+    <mat-form-field class="full-width">
+      <input matInput placeholder="UserName" formControlName="UserName" />
+      <mat-error *ngIf="UserName.invalid">
+        {{ getNameErrorMessage() }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="UserEmail" formControlName="UserEmail" />
+      <mat-error *ngIf="UserEmail.invalid">
+        {{ getEmailErrorMessage() }}
+      </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+  </form>
+</div>
