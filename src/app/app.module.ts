@@ -6,9 +6,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatBadgeModule } from "@angular/material/badge";
 import { MatButtonModule } from "@angular/material/button";
-
 import { MatSnackBarModule } from "@angular/material/snack-bar";
-
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import {
@@ -18,12 +16,21 @@ import {
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { MatInputModule } from "@angular/material/input";
 import { ToolbarComponent } from "./toolbar/toolbar.component";
-import { AuthService } from "./auth/auth.service";
-import { UserService } from "./auth/user.service";
+import { AuthService } from "./services/auth.service";
+import { UserService } from "./services/user.service";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import { ListComponent } from "./users/list/list.component";
-import { RegisterComponent } from "./users/register/register.component";
-import { AddheaderinterceptorService } from "./auth/addheaderinterceptor.service";
+import {
+  ListComponent,
+  DeleteSuccessfulComponent,
+  DeleteUnSuccessfulComponent
+} from "./users/list/list.component";
+import {
+  RegisterComponent,
+  RegistrationSuccessfulComponent,
+  RegistrationUnSuccessfulComponent
+} from "./users/register/register.component";
+import { AddheaderinterceptorService } from "./services/addheaderinterceptor.service";
+import { AuthGuardService } from "./services/authguard.service";
 
 @NgModule({
   declarations: [
@@ -32,7 +39,11 @@ import { AddheaderinterceptorService } from "./auth/addheaderinterceptor.service
     ToolbarComponent,
     InvalidCredentialsComponent,
     ListComponent,
-    RegisterComponent
+    RegisterComponent,
+    DeleteSuccessfulComponent,
+    DeleteUnSuccessfulComponent,
+    RegistrationSuccessfulComponent,
+    RegistrationUnSuccessfulComponent
   ],
   imports: [
     BrowserModule,
@@ -52,13 +63,21 @@ import { AddheaderinterceptorService } from "./auth/addheaderinterceptor.service
   providers: [
     AuthService,
     UserService,
+    AuthGuardService,
+
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AddheaderinterceptorService,
       multi: true
     }
   ],
-  entryComponents: [InvalidCredentialsComponent],
+  entryComponents: [
+    InvalidCredentialsComponent,
+    DeleteSuccessfulComponent,
+    DeleteUnSuccessfulComponent,
+    RegistrationSuccessfulComponent,
+    RegistrationUnSuccessfulComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
