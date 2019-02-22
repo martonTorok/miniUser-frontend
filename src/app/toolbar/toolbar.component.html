@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <a mat-button > <i>miniUser</i></a>
+    <a mat-button> <i>miniUser</i></a>
     <span class="fill-space"></span>
     <a
       *ngIf="this.authService.isAuthenticated()"
@@ -16,4 +16,6 @@
     >
   </mat-toolbar-row>
 </mat-toolbar>
-<router-outlet></router-outlet>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
