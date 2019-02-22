@@ -20,9 +20,10 @@ import { MatInputModule } from "@angular/material/input";
 import { ToolbarComponent } from "./toolbar/toolbar.component";
 import { AuthService } from "./auth/auth.service";
 import { UserService } from "./auth/user.service";
-import { HttpClientModule } from "@angular/common/http";
-import { ListComponent } from './users/list/list.component';
-import { RegisterComponent } from './users/register/register.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { ListComponent } from "./users/list/list.component";
+import { RegisterComponent } from "./users/register/register.component";
+import { AddheaderinterceptorService } from "./auth/addheaderinterceptor.service";
 
 @NgModule({
   declarations: [
@@ -48,7 +49,15 @@ import { RegisterComponent } from './users/register/register.component';
     MatButtonModule,
     MatSnackBarModule
   ],
-  providers: [AuthService, UserService],
+  providers: [
+    AuthService,
+    UserService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AddheaderinterceptorService,
+      multi: true
+    }
+  ],
   entryComponents: [InvalidCredentialsComponent],
   bootstrap: [AppComponent]
 })
