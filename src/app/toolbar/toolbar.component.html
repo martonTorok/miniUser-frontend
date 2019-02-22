@@ -1,7 +1,19 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <a mat-button routerLink="."> <i>miniUser</i></a>
+    <a mat-button > <i>miniUser</i></a>
     <span class="fill-space"></span>
+    <a
+      *ngIf="this.authService.isAuthenticated()"
+      mat-button
+      [routerLink]="['/users']"
+      >Users</a
+    >
+    <a
+      *ngIf="this.authService.isAuthenticated()"
+      mat-button
+      [routerLink]="['/register']"
+      >Register</a
+    >
   </mat-toolbar-row>
 </mat-toolbar>
 <router-outlet></router-outlet>
