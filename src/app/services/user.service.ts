@@ -13,4 +13,12 @@ export class UserService {
   getUsers() {
     return this.http.get<User[]>("http://localhost:3000/users");
   }
+
+  createUser(UserName: string, UserEmail: string) {
+      return this.http.post<User>("http://localhost:3000/users/create", {UserName, UserEmail});
+  }
+
+  deleteUser(id: number) {
+    return this.http.delete<any>(`http://localhost:3000/users/delete/${id}`);
+  }
 }
