@@ -1,0 +1,26 @@
+<div class="form-container">
+  <form
+    [formGroup]="loginForm"
+    class="login-form full-width"
+    (ngSubmit)="onSubmit()"
+  >
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Name" formControlName="adminName" />
+      <mat-error *ngIf="adminName.invalid">
+        {{ getNameErrorMessage() }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        placeholder="Password"
+        type="password"
+        formControlName="adminPassword"
+      />
+      <mat-error *ngIf="adminPassword.invalid">
+        {{ getPasswordErrorMessage() }}
+      </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Login</button>
+  </form>
+</div>
