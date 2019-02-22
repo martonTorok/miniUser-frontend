@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { AuthService } from "../auth/auth.service";
+import { AuthService } from "../services/auth.service";
 
 @Component({
   selector: "app-home",
@@ -32,7 +32,9 @@ export class HomeComponent implements OnInit {
       this.authService
         .loginAdmin(this.adminName.value, this.adminPassword.value)
         .subscribe(
-          data => {},
+          data => {
+            this.router.navigate(["/users"]);
+          },
           error => {
             this.adminName.reset();
             this.adminPassword.reset();
