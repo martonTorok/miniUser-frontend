@@ -10,4 +10,8 @@ export class ToolbarComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit() {}
+
+  isAuthenticated() {
+    return this.authService.isAuthenticated();
+  }
 }
